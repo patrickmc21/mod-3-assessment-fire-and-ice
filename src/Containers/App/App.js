@@ -7,8 +7,9 @@ import { fakeAction } from '../../actions';
 import getHouses from '../../Api/apiCalls/getHouses';
 class App extends Component {
 
-  componentDidMount() {
-    getHouses()
+  async componentDidMount() {
+    const houses = await getHouses();
+
   }
 
   render() {
@@ -35,7 +36,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = ({ fake }) => ({ fake });
-const mapDispatchToProps = dispatch => ({ fakeAction:
-  () => dispatch(fakeAction())
+
+
+const mapDispatchToProps = dispatch => ({ 
+  
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);
