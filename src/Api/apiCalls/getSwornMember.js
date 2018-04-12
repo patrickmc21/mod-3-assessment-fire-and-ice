@@ -9,9 +9,11 @@ const getSwornMember = async (memberId) => {
 
   try {
     const results = await fetch(url, options);
-    console.log(results);
     const member = await results.json();
+    return member;
   } catch (error) {
     throw error.message;
   }
-}
+};
+
+export default getSwornMember;
