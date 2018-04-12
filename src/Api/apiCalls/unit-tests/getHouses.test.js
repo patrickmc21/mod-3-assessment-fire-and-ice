@@ -19,10 +19,10 @@ describe('getHouses', () => {
         status: 200,
         json: () => {
           return Promise.resolve(
-           mockHouse
-          )
+            mockHouse
+          );
         }
-      })
+      });
     });
   });
 
@@ -43,7 +43,7 @@ describe('getHouses', () => {
       return Promise.reject({
         status: 404,
         message: 'FAIL'  
-      })
+      });
     });
     const expected = 'FAIL';
     const results = getHouses();
