@@ -8,11 +8,10 @@ describe('HouseCard', () => {
   let mockHouse;
 
   beforeEach(() => {
-    
+    mockHouse = mock.mockHouse[0];
   });
 
   it('should match the snapshot', () => {
-    const mockHouse = mock.mockHouse[0];
     const wrapper = shallow(
       <HouseCard house={mockHouse} />
     );
@@ -21,6 +20,20 @@ describe('HouseCard', () => {
   });
 
   it('should match the snapshot if house founded', () => {
+    mockHouse.founded = 'Founded';
+    const wrapper = shallow(
+      <HouseCard house={mockHouse} />
+    );
 
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the snapshot if house words exist', () => {
+    mockHouse.words = 'We HAVE WORDS';
+    const wrapper = shallow(
+      <HouseCard house={mockHouse} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
   });
 });

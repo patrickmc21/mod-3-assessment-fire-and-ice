@@ -1,7 +1,7 @@
 import React from 'react';
 
 const HouseCard = ({house}) => {
-  const founded = house.founded ? house.founded : 'N/A';
+  const founded = house.founded.length >= 1 ? house.founded : 'N/A';
   const seats = house.seats.map(seat => {
     return <li>{seat}</li>
   });
