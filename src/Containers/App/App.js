@@ -3,8 +3,20 @@ import PropTypes, { shape, func, string } from 'prop-types';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import { fakeAction } from '../../actions';
+import * as actions from '../../actions';
+import getHouses from '../../Api/apiCalls/getHouses';
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    }
+  }
+
+  async componentDidMount() {
+    const houses = await getHouses();
+    this.props.addHouses(houses);
+  }
 
   render() {
     return (
@@ -12,10 +24,6 @@ class App extends Component {
         <div className='App-header'>
           <img src={logo} className='App-logo' alt='logo' />
           <h2>Welcome to Westeros</h2>
-          <button onClick={() => {
-            this.props.fakeAction();
-            alert(this.props.fake);
-          }}> FAKE ACTION</button>
         </div>
         <div className='Display-info'>
         </div>
@@ -29,8 +37,12 @@ App.propTypes = {
   fakeAction: func.isRequired
 };
 
-const mapStateToProps = ({ fake }) => ({ fake });
-const mapDispatchToProps = dispatch => ({ fakeAction:
-  () => dispatch(fakeAction())
+const mapStateToProps = (state) => ({ 
+  houses: state.houses
+});
+
+
+const mapDispatchToProps = dispatch => ({ 
+  addHouses: houses => dispatch(actions.addHouses(houses))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);
