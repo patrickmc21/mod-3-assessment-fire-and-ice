@@ -43,20 +43,22 @@ class HouseCard extends Component {
         }
         <h4>Founded: {founded}</h4>
         <ul> 
-          <p>Seats:</p>
+          <h5>Seats:</h5>
           {seats}
         </ul>
         <ul>
-          <p>Titles:</p>
+          <h5>Titles:</h5>
           {titles}
         </ul>
-        <p>Coat of Arms: {house.coatOfArms}</p>
+        <h5>Coat of Arms:</h5>
+        <p>{house.coatOfArms}</p>
         <ul> 
-          <p>Ancestral Weapons:</p>
+          <h5>Ancestral Weapons:</h5>
           {weapons}
         </ul>
         {selected && 
           <ul>
+            <h5>Sworn Members:</h5>
             {swornMembers}
           </ul>}
       </article>
