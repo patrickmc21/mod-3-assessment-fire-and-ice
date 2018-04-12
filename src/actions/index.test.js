@@ -10,4 +10,4 @@ describe('addHouses', () => {
     const results = actions.addHouses(mock.mockHouse);
     expect(results).toEqual(expected);
   });
-})
+});
