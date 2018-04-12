@@ -5,4 +5,6 @@ const housesReducer = (state = [], action) => {
     default:
       return state;
   }
-}
+};
+
+export default housesReducer;
