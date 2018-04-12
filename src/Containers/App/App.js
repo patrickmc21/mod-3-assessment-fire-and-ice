@@ -8,12 +8,6 @@ import getHouses from '../../Api/apiCalls/getHouses';
 import HouseContainer from '../HouseContainer/HouseContainer';
 
 export class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true
-    }
-  }
 
   async componentDidMount() {
     const houses = await getHouses();

@@ -7,6 +7,25 @@ jest.mock('../../Api/apiCalls/getHouses');
 
 describe('App', () => {
 
+  let wrapper;
+  let mockAddHouses;
+
+  beforeEach(() => {
+    mockAddHouses = jest.fn();
+    wrapper = shallow(<App addHouses={mockAddHouses}/>);
+  });
+
+  it('should match the snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should call getHouses on mount', async () => {
+    expect(getHouses).toHaveBeenCalled();
+  });
+
+  it('should call addHouses on mount', async () => {
+    expect(mockAddHouses).toHaveBeenCalledWith(mockHouse);
+  });
 });
 
 describe('mapDispatchToProps', () => {
