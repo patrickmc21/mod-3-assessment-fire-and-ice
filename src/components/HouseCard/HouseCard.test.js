@@ -8,7 +8,7 @@ describe('HouseCard', () => {
   let mockHouse;
 
   beforeEach(() => {
-    mockHouse = mock.mockHouse[0];
+    mockHouse = mock.houseWithSwornMember;
   });
 
   it('should match the snapshot', () => {
@@ -35,5 +35,24 @@ describe('HouseCard', () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the snapshot if a sworn member is alive', () => {
+    mockHouse.swornMembers[0].died = "";
+
+    const wrapper = shallow(
+      <HouseCard house={mockHouse} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should toggle the selected state on click', () => {
+    const wrapper = shallow(
+      <HouseCard house={mockHouse} />
+    );
+    const expected = true;
+    wrapper.instance().handleClick();
+    expect(wrapper.state().selected).toEqual(expected);
   });
 });

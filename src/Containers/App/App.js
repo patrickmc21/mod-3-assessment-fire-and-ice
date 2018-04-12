@@ -13,7 +13,6 @@ export class App extends Component {
   async componentDidMount() {
     const houses = await getHouses();
     const housesWithMembers = await this.addSwornMembersToHouse(houses);
-    console.log(housesWithMembers)
     this.props.addHouses(housesWithMembers);
   }
 
