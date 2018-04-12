@@ -37,4 +37,38 @@ export const mockHouse = [
    "https://www.anapioficeandfire.com/api/characters/1182"
    ]
 }
-]
+];
+
+export const swornMember = {  
+   "url":"https://www.anapioficeandfire.com/api/characters/255",
+   "name":"Corwyn Corbray",
+   "gender":"Male",
+   "culture":"",
+   "born":"",
+   "died":"In 134 AC, at Runestone",
+   "titles":[  
+      "Ser",
+      "Lord Regent"
+   ],
+   "aliases":[  
+      ""
+   ],
+   "father":"",
+   "mother":"",
+   "spouse":"https://www.anapioficeandfire.com/api/characters/871",
+   "allegiances":[  
+      "https://www.anapioficeandfire.com/api/houses/81"
+   ],
+   "books":[  
+      "https://www.anapioficeandfire.com/api/books/11"
+   ],
+   "povBooks":[  
+
+   ],
+   "tvSeries":[  
+      ""
+   ],
+   "playedBy":[  
+      ""
+   ]
+};

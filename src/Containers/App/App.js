@@ -5,13 +5,38 @@ import './App.css';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import getHouses from '../../Api/apiCalls/getHouses';
+import getSwornMember from '../../Api/apiCalls/getSwornMember';
 import HouseContainer from '../HouseContainer/HouseContainer';
 
 export class App extends Component {
 
   async componentDidMount() {
     const houses = await getHouses();
-    this.props.addHouses(houses);
+    const housesWithMembers = await this.addSwornMembersToHouse(houses);
+    console.log(housesWithMembers)
+    this.props.addHouses(housesWithMembers);
+  }
+
+  addSwornMembersToHouse = (houses) => {
+    const members =  houses.map(async house => {
+      const swornMembers = await this.getSwornMembers(house);
+      return {...house, swornMembers};
+    });
+
+    return Promise.all(members);
+  }
+
+  getSwornMembers = (house) => {
+    const members = house.swornMembers.map(member => {
+      const id = this.cleanMemberEndPoint(member);
+      return getSwornMember(id);
+    });
+    return Promise.all(members);
+  }
+
+  cleanMemberEndPoint = (url) => {
+    const cleanedEndPoint = url.split('https://www.anapioficeandfire.com/api/characters/');
+    return cleanedEndPoint[1];
   }
 
   render() {
