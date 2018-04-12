@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import HouseCard from '../../components/HouseCard/HouseCard';
+import wolf from './images/wolf.gif';
 
 export const HouseContainer = (props) => {
   const { houses } = props;
@@ -9,13 +10,14 @@ export const HouseContainer = (props) => {
   })
   return (
     <div className='Container'>
-      {houseCards}
+      {houses.length < 1 && <img src={wolf} id='Wolf' />}
+      {houses.length >= 1 && houseCards}
     </div>
   );
 };
 
 export const mapStateToProps = (state) => ({
-  houses: state.houses;
+  houses: state.houses
 });
 
 

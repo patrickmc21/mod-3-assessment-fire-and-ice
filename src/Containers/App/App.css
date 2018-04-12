@@ -58,3 +58,7 @@
   flex-grow: 1;
   width: 300px;
 }
+
+.Card ul {
+  list-style: none;
+}
