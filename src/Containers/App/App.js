@@ -6,13 +6,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import getHouses from '../../Api/apiCalls/getHouses';
 import HouseContainer from '../HouseContainer/HouseContainer';
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true
-    }
-  }
+
+export class App extends Component {
 
   async componentDidMount() {
     const houses = await getHouses();
@@ -35,16 +30,10 @@ class App extends Component {
 }
 
 App.propTypes = {
-  fake: shape({ fake: string }),
-  fakeAction: func.isRequired
+  addHouses: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({ 
-  houses: state.houses
-});
-
-
-const mapDispatchToProps = dispatch => ({ 
+export const mapDispatchToProps = dispatch => ({ 
   addHouses: houses => dispatch(actions.addHouses(houses))
 });
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

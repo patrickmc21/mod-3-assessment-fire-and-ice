@@ -7,9 +7,13 @@ const getHouses = async () => {
     }
   };
 
-  const results = await fetch(url, options);
-  const houses = await results.json();
-  return houses;
+  try {
+    const results = await fetch(url, options);
+    const houses = await results.json();
+    return houses;
+  } catch (error) {
+    throw error.message;
+  }
 };
 
 
