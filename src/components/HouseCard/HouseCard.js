@@ -2,14 +2,14 @@ import React from 'react';
 
 const HouseCard = ({house}) => {
   const founded = house.founded.length >= 1 ? house.founded : 'N/A';
-  const seats = house.seats.map(seat => {
-    return <li>{seat}</li>
+  const seats = house.seats.map((seat, idx) => {
+    return <li key={idx}>{seat}</li>
   });
-  const titles = house.titles.map(title => {
-    return <li>{title}</li>
+  const titles = house.titles.map((title, idx) => {
+    return <li key={idx}>{title}</li>
   });
-  const weapons = house.ancestralWeapons.map(weapon => {
-    return <li>{weapon}</li>
+  const weapons = house.ancestralWeapons.map((weapon, idx) => {
+    return <li key={idx}>{weapon}</li>
   });
 
   return (

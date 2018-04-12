@@ -6,7 +6,7 @@ import wolf from './images/wolf.gif';
 export const HouseContainer = (props) => {
   const { houses } = props;
   const houseCards = houses.map(house => {
-    return (<HouseCard house={house} />);
+    return (<HouseCard key={house.name} house={house} />);
   })
   return (
     <div className='Container'>
