@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { App, mapDispatchToProps } from './App';
 import getHouses from '../../Api/apiCalls/getHouses';
 import getSwornMember from '../../Api/apiCalls/getSwornMember';
-import { mockHouse, houseWithSwornMember } from '../../mockData';
+import { mockHouse, houseWithSwornMember, swornMember } from '../../mockData';
 jest.mock('../../Api/apiCalls/getHouses');
 jest.mock('../../Api/apiCalls/getSwornMember');
 
@@ -33,10 +33,35 @@ describe('App', () => {
     expect(spy).toHaveBeenCalledWith(...mockHouse);
   });
 
-  it('should call addHouses on mount', () => {
-    expect(mockAddHouses).toHaveBeenCalledWith(houseWithSwornMember);
+  it('should call addHouses on mount', async () => {
+    wrapper = shallow(<App addHouses={mockAddHouses}/>, 
+      {disableLifecycleMethods: true});
+    await wrapper.instance().componentDidMount();
+    expect(mockAddHouses).toHaveBeenCalledWith([houseWithSwornMember]);
   });
+
+  it('should add swornMembers to house', async () => {
+    const mockHouses = mockHouse;
+    const expected = [houseWithSwornMember];
+    const results = await wrapper.instance().addSwornMembersToHouse(mockHouses);
+    expect(results).toEqual(expected);
+  });
+
+  it('should fetch the swornMembers', async () => {
+    const params = mockHouse[0];
+    const expected = [swornMember];
+    const results = await wrapper.instance().getSwornMembers(params);
+    expect(results).toEqual(expected);
+  });
+
+  it('should clean the endpoint id off the url', () => {
+    const params = mockHouse[0].swornMembers[0];
+    const expected = '255';
+    const results = wrapper.instance().cleanMemberEndPoint(params);
+    expect(results).toEqual(expected);
+  })
 });
+
 
 describe('mapDispatchToProps', () => {
   it('should map addHouses to props', () => {
