@@ -42,7 +42,7 @@ describe('App', () => {
 
   it('should set errorStatus on failed fetch', async () => {
     mockAddHouses = jest.fn().mockImplementation(() => {
-      throw {message: 'FAIL'}
+      throw {message: 'FAIL'};
     });
     wrapper = shallow(<App addHouses={mockAddHouses}/>, 
       {disableLifecycleMethods: true});
