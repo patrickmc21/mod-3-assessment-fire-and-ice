@@ -28,7 +28,8 @@ class HouseCard extends Component {
     });
 
     const swornMembers = house.swornMembers.map((member, idx) => {
-      return <li key={idx}>{member.name}</li>;
+      const status = member.died.length < 1 ? 'Alive' : `Died ${member.died}`; 
+      return <li key={idx}>Name: {member.name} Status: {status}</li>;
     });
     const { selected } = this.state;
     return (
