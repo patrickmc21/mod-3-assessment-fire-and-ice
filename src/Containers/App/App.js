@@ -34,7 +34,8 @@ export class App extends Component {
   }
 
   cleanMemberEndPoint = (url) => {
-    const cleanedEndPoint = url.split('https://www.anapioficeandfire.com/api/characters/');
+    const cleanPoint = 'https://www.anapioficeandfire.com/api/characters/';
+    const cleanedEndPoint = url.split(cleanPoint);
     return cleanedEndPoint[1];
   }
 
