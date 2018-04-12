@@ -21,7 +21,7 @@ describe('getSwornMember', () => {
         json: () => {
           return Promise.resolve(swornMember);
         }
-      })
+      });
     });
   });
 
@@ -42,7 +42,7 @@ describe('getSwornMember', () => {
       return Promise.reject({
         status: 404,
         message: 'FAIL'
-      })
+      });
     });
 
     const expected = 'FAIL';

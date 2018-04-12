@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 class HouseCard extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       selected: false
-    }
+    };
   }
 
   handleClick = () => {
@@ -61,7 +61,7 @@ class HouseCard extends Component {
       </article>
     );
   }
-};
+}
 
 HouseCard.propTypes = {
   house: PropTypes.object

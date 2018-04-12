@@ -54,6 +54,12 @@ describe('App', () => {
     expect(results).toEqual(expected);
   });
 
+  it('should call getSwornMember', async () => {
+    const params = mockHouse[0];
+    await wrapper.instance().getSwornMembers(params);
+    expect(getSwornMember).toHaveBeenCalled();
+  });
+
   it('should clean the endpoint id off the url', () => {
     const params = mockHouse[0].swornMembers[0];
     const expected = '255';
