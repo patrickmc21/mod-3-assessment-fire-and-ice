@@ -5,6 +5,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import getHouses from '../../Api/apiCalls/getHouses';
+import HouseContainer from './HouseContainer/HouseContainer';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +27,7 @@ class App extends Component {
           <h2>Welcome to Westeros</h2>
         </div>
         <div className='Display-info'>
+          <HouseContainer />
         </div>
       </div>
     );
