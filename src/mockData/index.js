@@ -72,3 +72,6 @@ export const swornMember = {
       ""
    ]
 };
+
+export const houseWithSwornMember = {...mockHouse, swornMembers: [swornMember]};
+

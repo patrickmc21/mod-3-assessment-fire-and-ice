@@ -2,8 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { App, mapDispatchToProps } from './App';
 import getHouses from '../../Api/apiCalls/getHouses';
-import { mockHouse } from '../../mockData';
+import getSwornMember from '../../Api/apiCalls/getSwornMember';
+import { mockHouse, houseWithSwornMember } from '../../mockData';
 jest.mock('../../Api/apiCalls/getHouses');
+jest.mock('../../Api/apiCalls/getSwornMember');
 
 describe('App', () => {
 
@@ -23,8 +25,16 @@ describe('App', () => {
     expect(getHouses).toHaveBeenCalled();
   });
 
-  it('should call addHouses on mount', async () => {
-    expect(mockAddHouses).toHaveBeenCalledWith(mockHouse);
+  it('should call getSwornMembers on mount', async () => {
+    wrapper = shallow(<App addHouses={mockAddHouses}/>, 
+      {disableLifecycleMethods: true});
+    const spy = jest.spyOn(wrapper.instance(), 'getSwornMembers');
+    await wrapper.instance().componentDidMount();
+    expect(spy).toHaveBeenCalledWith(...mockHouse);
+  });
+
+  it('should call addHouses on mount', () => {
+    expect(mockAddHouses).toHaveBeenCalledWith(houseWithSwornMember);
   });
 });
 
