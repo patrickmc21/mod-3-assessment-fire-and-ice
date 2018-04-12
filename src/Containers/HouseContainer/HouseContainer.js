@@ -8,7 +8,7 @@ export const HouseContainer = (props) => {
     return (<HouseCard house={house} />);
   })
   return (
-    <div>
+    <div className='Container'>
       {houseCards}
     </div>
   );
@@ -19,4 +19,4 @@ export const mapStateToProps = (state) => ({
 });
 
 
-export default connect(null, null)(HouseContainer);
+export default connect(mapStateToProps, null)(HouseContainer);
