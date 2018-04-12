@@ -11,9 +11,13 @@ import HouseContainer from '../HouseContainer/HouseContainer';
 export class App extends Component {
 
   async componentDidMount() {
-    const houses = await getHouses();
-    const housesWithMembers = await this.addSwornMembersToHouse(houses);
-    this.props.addHouses(housesWithMembers);
+    try {
+      const houses = await getHouses();
+      const housesWithMembers = await this.addSwornMembersToHouse(houses);
+      this.props.addHouses(housesWithMembers);
+    } catch (error) {
+      this.setState({errorStatus: error.message});
+    }
   }
 
   addSwornMembersToHouse = (houses) => {
