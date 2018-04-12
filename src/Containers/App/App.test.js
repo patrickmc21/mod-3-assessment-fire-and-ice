@@ -59,7 +59,7 @@ describe('App', () => {
     const expected = '255';
     const results = wrapper.instance().cleanMemberEndPoint(params);
     expect(results).toEqual(expected);
-  })
+  });
 });
 
 
