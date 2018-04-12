@@ -47,6 +47,16 @@ describe('HouseCard', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should match the snapshot if a sworn member has one title', () => {
+    mockHouse.swornMembers[0].titles = ['Ser'];
+
+    const wrapper = shallow(
+      <HouseCard house={mockHouse} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('should toggle the selected state on click', () => {
     const wrapper = shallow(
       <HouseCard house={mockHouse} />

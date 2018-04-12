@@ -14,24 +14,49 @@ class HouseCard extends Component {
     this.setState({ selected });
   }
 
-  render() {
-    const { house } = this.props;
-    const founded = house.founded.length >= 1 ? house.founded : 'N/A';
-    const seats = house.seats.map((seat, idx) => {
+  renderFounded = (house) => {
+    return house.founded.length >= 1 ? house.founded : 'N/A';
+  }
+
+  renderSeats = (house) => {
+    return house.seats.map((seat, idx) => {
       return <li key={idx}>{seat}</li>;
     });
-    const titles = house.titles.map((title, idx) => {
+  }
+
+  renderTitles = (house) => {
+    return house.titles.map((title, idx) => {
       return <li key={idx}>{title}</li>;
     });
-    const weapons = house.ancestralWeapons.map((weapon, idx) => {
+  }
+
+  renderWeapons = (house) => {
+    return house.ancestralWeapons.map((weapon, idx) => {
       return <li key={idx}>{weapon}</li>;
     });
+  }
 
-    const swornMembers = house.swornMembers.map((member, idx) => {
+  renderSwornMembers = (house) => {
+    return house.swornMembers.map((member, idx) => {
+      const secondTitle = member.titles[1] ? member.titles[1] : '';
       const status = member.died.length < 1 ? 'Alive' : `Died ${member.died}`; 
-      return <li key={idx}>Name: {member.name} Status: {status}</li>;
+      return (
+        <li 
+          key={idx}>
+          Name: {member.titles[0]} {member.name} {secondTitle} Status: {status}
+        </li>
+      );
     });
+  }
+
+  render() {
+    const { house } = this.props;
     const { selected } = this.state;
+    const founded = this.renderFounded(house);
+    const seats = this.renderSeats(house);
+    const titles = this.renderTitles(house);
+    const weapons = this.renderWeapons(house);
+    const swornMembers = this.renderSwornMembers(house);
     return (
       <article 
         onClick={this.handleClick}
@@ -42,20 +67,22 @@ class HouseCard extends Component {
         }
         <h4>Founded: {founded}</h4>
         <ul> 
-          <p>Seats:</p>
+          <h5>Seats:</h5>
           {seats}
         </ul>
         <ul>
-          <p>Titles:</p>
+          <h5>Titles:</h5>
           {titles}
         </ul>
-        <p>Coat of Arms: {house.coatOfArms}</p>
+        <h5>Coat of Arms:</h5>
+        <p>{house.coatOfArms}</p>
         <ul> 
-          <p>Ancestral Weapons:</p>
+          <h5>Ancestral Weapons:</h5>
           {weapons}
         </ul>
         {selected && 
           <ul>
+            <h5>Sworn Members:</h5>
             {swornMembers}
           </ul>}
       </article>

@@ -40,6 +40,17 @@ describe('App', () => {
     expect(mockAddHouses).toHaveBeenCalledWith([houseWithSwornMember]);
   });
 
+  it('should set errorStatus on failed fetch', async () => {
+    mockAddHouses = jest.fn().mockImplementation(() => {
+      throw {message: 'FAIL'};
+    });
+    wrapper = shallow(<App addHouses={mockAddHouses}/>, 
+      {disableLifecycleMethods: true});
+    const expected = 'FAIL';
+    await   wrapper.instance().componentDidMount();
+    expect(wrapper.state().errorStatus).toEqual(expected);
+  });
+
   it('should add swornMembers to house', async () => {
     const mockHouses = mockHouse;
     const expected = [houseWithSwornMember];
